@@ -2,19 +2,15 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+A Browser-based card memory game - project of the Udacity Front-End Web Developer Nanodegree Program
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+Start the game by clicking on any card. Try to match all the pairs as fast as you can, with minimum count of moves to get the highest star rate.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Features
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+- Moves counter
+- Live Stopwatch
+- 3 Stars rating System [ Based on the number of your moves]
+- Restart the game button
