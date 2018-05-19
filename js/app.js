@@ -41,8 +41,11 @@ for(let i = 0; i < icons.length; i++){
 
       } else {
 
-        currentCard.classList.remove("open","show");
-        previousCard.classList.remove("open","show");
+        //Set timeout to see card
+        setTimeout(function() {
+          currentCard.classList.remove("open","show");
+          previousCard.classList.remove("open","show");
+        }, 500);
 
         openedCards = [];
       }
