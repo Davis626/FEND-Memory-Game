@@ -45,9 +45,9 @@ for(let i = 0; i < icons.length; i++){
         setTimeout(function() {
           currentCard.classList.remove("open","show");
           previousCard.classList.remove("open","show");
+          openedCards = [];
         }, 500);
 
-        openedCards = [];
       }
 
     } else {
