@@ -3,6 +3,8 @@ const icons = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-p
 
 const cardsContainer = document.querySelector (".deck");
 
+let openedCards = [];
+
 //Create cards
 for(let i = 0; i < icons.length; i++){
   const card = document.createElement("li");
@@ -12,10 +14,38 @@ for(let i = 0; i < icons.length; i++){
 
   //Card click event
   card.addEventListener("click", function(){
-    card.classList.add("open", "show");
-  });
 
+    const currentCard = this;
+    const previousCard = openedCards[0];
 
+    //Have existing opened card
+    if(openedCards.length === 1) {
+
+      card.classList.add("open", "show");
+      openedCards.push(this);
+
+      //Compare 2 cards
+      if(currentCard.innerHTML === previousCard.innerHTML){
+
+        currentCard.classList.add("match");
+        previousCard.classList.add("match");
+
+        openedCards = [];
+
+      } else {
+        currentCard.classList.remove("open","show");
+        previousCard.classList.remove("open","show");
+
+        openedCards = [];
+      }
+
+    } else {
+
+    //Don't have any opened cards
+    currentCard.classList.add("open", "show");
+    openedCards.push(this);
+  }
+});
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
