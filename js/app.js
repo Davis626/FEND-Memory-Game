@@ -4,6 +4,7 @@ const icons = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-p
 const cardsContainer = document.querySelector (".deck");
 
 let openedCards = [];
+let matchedCards = [];
 
 //Create cards
 for(let i = 0; i < icons.length; i++){
@@ -27,12 +28,19 @@ for(let i = 0; i < icons.length; i++){
       //Compare 2 cards
       if(currentCard.innerHTML === previousCard.innerHTML){
 
+        //Cards matched
         currentCard.classList.add("match");
         previousCard.classList.add("match");
 
+        matchedCards.push(currentCard, previousCard);
+
         openedCards = [];
 
+        //Check if the game is over
+        gameOver();
+
       } else {
+
         currentCard.classList.remove("open","show");
         previousCard.classList.remove("open","show");
 
@@ -46,6 +54,12 @@ for(let i = 0; i < icons.length; i++){
     openedCards.push(this);
   }
 });
+}
+
+function gameOver() {
+  if(matchedCards.length === icons.length) {
+    alert("GAME OVER!");
+  }
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
