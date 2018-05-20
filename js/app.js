@@ -36,7 +36,7 @@ function click(card) {
     //Have existing opened card
     if(openedCards.length === 1) {
 
-      card.classList.add("open", "show");
+      card.classList.add("open", "show", "disable");
       openedCards.push(this);
 
       //Compare 2 cards
@@ -46,7 +46,7 @@ function click(card) {
     } else {
 
     //Don't have any opened cards
-    currentCard.classList.add("open", "show");
+    currentCard.classList.add("open", "show", "disable");
     openedCards.push(this);
   }
 });
@@ -74,8 +74,8 @@ function click(card) {
 
      //Set timeout to see card
      setTimeout(function() {
-       currentCard.classList.remove("open","show");
-       previousCard.classList.remove("open","show");
+       currentCard.classList.remove("open","show", "disable");
+       previousCard.classList.remove("open","show", "disable");
        openedCards = [];
      }, 500);
 
@@ -91,6 +91,11 @@ function gameOver() {
     alert("GAME OVER!");
   }
 }
+
+/*
+ * Restart the game
+ */
+const restartBtn = document.querySelector(".restart");
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
