@@ -76,9 +76,9 @@ function click(card) {
      setTimeout(function() {
        currentCard.classList.remove("open","show", "disable");
        previousCard.classList.remove("open","show", "disable");
-       openedCards = [];
      }, 500);
 
+     openedCards = [];
    }
    //Add move
    addMove();
@@ -103,11 +103,28 @@ function gameOver() {
  function addMove() {
    moves++;
    movesContainer.innerHTML = moves;
+
+   //Set the Raiting
+   rating();
+
  }
 
- /*
-  * Raiting system
-  */
+/*
+ * Raiting system
+ */
+ const starsContainer = document.querySelector(".stars");
+const star = `<li><i class="fa fa-star"></i></li>`;
+starsContainer.innerHTML = star + star + star;
+function rating() {
+
+    if( moves < 10) {
+        starsContainer.innerHTML = star + star + star;
+    } else if( moves < 15) {
+        starsContainer.innerHTML = star + star;
+    } else {
+        starsContainer.innerHTML = star;
+    }
+}
 
 
 /*
@@ -126,7 +143,7 @@ restartBtn.addEventListener("click", function() {
   matchedCards = [];
   moves = 0;
   movesContainer.innerHTML = moves;
-  starsContainer.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+  starsContainer.innerHTML = star + star + star;
 
 })
 
