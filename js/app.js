@@ -80,6 +80,8 @@ function click(card) {
      }, 500);
 
    }
+   //Add move
+   addMove();
  }
 
 /*
@@ -91,6 +93,17 @@ function gameOver() {
     alert("GAME OVER!");
   }
 }
+
+/*
+ * Count moves
+ */
+ const movesContainer = document.querySelector(".moves");
+ let moves = 0;
+ function addMove() {
+   moves++;
+   movesContainer.innerHTML = moves;
+ }
+
 
 /*
  * Restart the game
