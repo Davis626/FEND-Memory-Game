@@ -96,6 +96,18 @@ function gameOver() {
  * Restart the game
  */
 const restartBtn = document.querySelector(".restart");
+restartBtn.addEventListener("click", function() {
+
+  //Delete cards
+  cardsContainer.innerHTML = "";
+
+  //Call 'createCards' function to start new game
+  createCards();
+
+  //Reset any related variables
+  matchedCards = [];
+
+})
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
