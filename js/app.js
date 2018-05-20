@@ -6,13 +6,27 @@ const cardsContainer = document.querySelector (".deck");
 let openedCards = [];
 let matchedCards = [];
 
-//Create cards
-for(let i = 0; i < icons.length; i++){
-  const card = document.createElement("li");
-  card.classList.add("card");
-  card.innerHTML = `<i class="${icons[i]}"></i>`
-  cardsContainer.appendChild(card);
+/*
+ * Create cards to start the game
+ */
 
+function createCards() {
+  for(let i = 0; i < icons.length; i++){
+    const card = document.createElement("li");
+    card.classList.add("card");
+    card.innerHTML = `<i class="${icons[i]}"></i>`
+    cardsContainer.appendChild(card);
+
+    //Add click event for each card
+    click(card);
+  }
+}
+
+
+/*
+ * Click event
+ */
+function click(card) {
   //Card click event
   card.addEventListener("click", function(){
 
@@ -26,29 +40,8 @@ for(let i = 0; i < icons.length; i++){
       openedCards.push(this);
 
       //Compare 2 cards
-      if(currentCard.innerHTML === previousCard.innerHTML){
+      compare(currentCard, previousCard);
 
-        //Cards matched
-        currentCard.classList.add("match");
-        previousCard.classList.add("match");
-
-        matchedCards.push(currentCard, previousCard);
-
-        openedCards = [];
-
-        //Check if the game is over
-        gameOver();
-
-      } else {
-
-        //Set timeout to see card
-        setTimeout(function() {
-          currentCard.classList.remove("open","show");
-          previousCard.classList.remove("open","show");
-          openedCards = [];
-        }, 500);
-
-      }
 
     } else {
 
@@ -58,6 +51,40 @@ for(let i = 0; i < icons.length; i++){
   }
 });
 }
+
+/*
+ * Compare cards
+ */
+
+ function compare(currentCard, previousCard) {
+   if(currentCard.innerHTML === previousCard.innerHTML){
+
+     //Cards matched
+     currentCard.classList.add("match");
+     previousCard.classList.add("match");
+
+     matchedCards.push(currentCard, previousCard);
+
+     openedCards = [];
+
+     //Check if the game is over
+     gameOver();
+
+   } else {
+
+     //Set timeout to see card
+     setTimeout(function() {
+       currentCard.classList.remove("open","show");
+       previousCard.classList.remove("open","show");
+       openedCards = [];
+     }, 500);
+
+   }
+ }
+
+/*
+ * Game over function
+ */
 
 function gameOver() {
   if(matchedCards.length === icons.length) {
@@ -79,6 +106,9 @@ function shuffle(array) {
 
     return array;
 }
+
+// Create cards to start the game
+createCards();
 
 
 /*
