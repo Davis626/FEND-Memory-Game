@@ -105,6 +105,10 @@ function gameOver() {
    movesContainer.innerHTML = moves;
  }
 
+ /*
+  * Raiting system
+  */
+
 
 /*
  * Restart the game
@@ -122,6 +126,7 @@ restartBtn.addEventListener("click", function() {
   matchedCards = [];
   moves = 0;
   movesContainer.innerHTML = moves;
+  starsContainer.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
 
 })
 
