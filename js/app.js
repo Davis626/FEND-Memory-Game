@@ -1,5 +1,5 @@
 //Create a list that holds all of your cards
-const icons = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
+const iconsList = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
 
 const cardsContainer = document.querySelector (".deck");
 
@@ -7,10 +7,33 @@ let openedCards = [];
 let matchedCards = [];
 
 /*
+ * Shuffle function
+ */
+
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+
+/*
  * Create cards to start the game
  */
 
 function createCards() {
+
+  const icons = shuffle(iconsList);
+
   for(let i = 0; i < icons.length; i++){
     const card = document.createElement("li");
     card.classList.add("card");
@@ -89,7 +112,7 @@ function click(card) {
  */
 
 function gameOver() {
-  if(matchedCards.length === icons.length) {
+  if(matchedCards.length === iconsList.length) {
     alert("GAME OVER!");
   }
 }
@@ -143,24 +166,16 @@ restartBtn.addEventListener("click", function() {
   matchedCards = [];
   moves = 0;
   movesContainer.innerHTML = moves;
-  starsContainer.innerHTML = star + star + star;
+
+starsContainer.innerHTML = star + star + star;
+
+
 
 })
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
 
-    return array;
-}
+
 
 // Create cards to start the game
 createCards();
