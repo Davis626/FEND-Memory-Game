@@ -5,12 +5,13 @@ const cardsContainer = document.querySelector (".deck");
 
 let openedCards = [];
 let matchedCards = [];
+let time = 0;
+let counter = 0;
 
 /*
- * Shuffle function
+ * Shuffle function from http://stackoverflow.com/a/2450976
  */
 
-// Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -149,6 +150,20 @@ function rating() {
     }
 }
 
+/*
+ * Timer function
+ */
+function increment(){
+  if(counter === 0){
+    setTimeout(function(){
+      time++;
+      let mins = Math.floor(time/10/60);
+      let secs = Math.floor(time/10);
+      document.getElementById("timer").innerHTML = mins + ":" + secs;
+      increment();
+      }, 100);
+  }
+}
 
 /*
  * Restart the game
