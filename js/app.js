@@ -6,7 +6,7 @@ const cardsContainer = document.querySelector (".deck");
 let openedCards = [];
 let matchedCards = [];
 let time = 0;
-let counter = 0;
+let firstClick = true;
 
 /*
  * Shuffle function from http://stackoverflow.com/a/2450976
@@ -56,6 +56,12 @@ function click(card) {
 
     const currentCard = this;
     const previousCard = openedCards[0];
+
+    // Only the first click calls timer function
+        if(firstClick) {
+            timer();
+            firstClick = false;
+        }
 
     //Have existing opened card
     if(openedCards.length === 1) {
@@ -153,17 +159,23 @@ function rating() {
 /*
  * Timer function
  */
-function increment(){
-  if(counter === 0){
-    setTimeout(function(){
+function timer(){
+  let counter = setTimeout(function(){
       time++;
       let mins = Math.floor(time/10/60);
       let secs = Math.floor(time/10);
-      document.getElementById("timer").innerHTML = mins + ":" + secs;
-      increment();
+      if(secs < 10){
+        document.getElementById("timer").innerHTML = mins + ":0" + secs;
+      } else {
+        document.getElementById("timer").innerHTML = mins + ":" + secs;
+      }
+      timer();
       }, 100);
-  }
 }
+
+/*
+ * Start timer function
+ */
 
 /*
  * Restart the game
@@ -181,8 +193,9 @@ restartBtn.addEventListener("click", function() {
   matchedCards = [];
   moves = 0;
   movesContainer.innerHTML = moves;
-
-starsContainer.innerHTML = star + star + star;
+  starsContainer.innerHTML = star + star + star;
+  time = 0;
+  firstClick = true;
 
 
 
