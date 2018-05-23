@@ -140,7 +140,7 @@ function gameOver() {
     starsContainer.innerHTML = star + star + star;
     firstClick = true;
     resetTimer();
-    
+
     alert("GAME OVER!");
   }
 }
