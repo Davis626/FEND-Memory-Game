@@ -5,8 +5,15 @@ const cardsContainer = document.querySelector (".deck");
 
 let openedCards = [];
 let matchedCards = [];
-let time = 0;
 let firstClick = true;
+
+//Timer variables
+let currentTimer = 0;
+let interval = 0;
+let lastUpdateTime = new Date().getTime();
+let mins = document.querySelector('span.minutes');
+let secs = document.querySelector('span.seconds');
+let cents = document.querySelector('span.centiseconds');
 
 /*
  * Shuffle function from http://stackoverflow.com/a/2450976
@@ -59,7 +66,7 @@ function click(card) {
 
     // Only the first click calls timer function
         if(firstClick) {
-            timer();
+            startTimer();
             firstClick = false;
         }
 
@@ -120,6 +127,20 @@ function click(card) {
 
 function gameOver() {
   if(matchedCards.length === iconsList.length) {
+    //Delete cards
+    cardsContainer.innerHTML = "";
+
+    //Call 'createCards' function to start new game
+    createCards();
+
+    //Reset any related variables
+    matchedCards = [];
+    moves = 0;
+    movesContainer.innerHTML = moves;
+    starsContainer.innerHTML = star + star + star;
+    firstClick = true;
+    resetTimer();
+    
     alert("GAME OVER!");
   }
 }
@@ -159,23 +180,48 @@ function rating() {
 /*
  * Timer function
  */
-function timer(){
-  let counter = setTimeout(function(){
-      time++;
-      let mins = Math.floor(time/10/60);
-      let secs = Math.floor(time/10);
-      if(secs < 10){
-        document.getElementById("timer").innerHTML = mins + ":0" + secs;
-      } else {
-        document.getElementById("timer").innerHTML = mins + ":" + secs;
-      }
-      timer();
-      }, 100);
+
+//Function returns 2 digit, for example: 1 = 01
+function twoDigit (n) {
+  return ("00" + n).substr(-2);
+}
+
+//Updates the time
+function update () {
+  let now = new Date().getTime(),
+  dt = now - lastUpdateTime;
+
+  currentTimer += dt;
+
+  let time = new Date(currentTimer);
+
+  mins.innerHTML = twoDigit(time.getMinutes());
+  secs.innerHTML = twoDigit(time.getSeconds());
+  cents.innerHTML = twoDigit(Math.floor(time.getMilliseconds() / 10));
+
+  lastUpdateTime = now;
 }
 
 /*
- * Start timer function
+ * Start and reset timer functions
  */
+function startTimer() {
+  if (!interval) {
+    lastUpdateTime = new Date().getTime();
+    interval = setInterval(update, 1);
+  }
+}
+
+  function stopTimer() {
+    clearInterval(interval);
+    interval = 0;
+  }
+
+  function resetTimer() {
+    stopTimer();
+    currentTimer = 0;
+    mins.innerHTML = secs.innerHTML = cents.innerHTML = twoDigit(0)
+  }
 
 /*
  * Restart the game
@@ -194,8 +240,8 @@ restartBtn.addEventListener("click", function() {
   moves = 0;
   movesContainer.innerHTML = moves;
   starsContainer.innerHTML = star + star + star;
-  time = 0;
   firstClick = true;
+  resetTimer();
 
 
 
