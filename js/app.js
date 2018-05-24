@@ -141,7 +141,7 @@ function gameOver() {
     firstClick = true;
     resetTimer();
 
-    alert("GAME OVER!");
+    modalPop();
   }
 }
 
@@ -159,6 +159,30 @@ function gameOver() {
    rating();
 
  }
+
+ /*
+ * Game Over Message
+ */
+ function modalPop() {
+
+   const modal = document.querySelector(".modal");
+
+
+     // Display the modal
+     modal.style.top = "0";
+
+     // Add moves to the Modal
+     const totalMoves = document.querySelector("#totalMoves");
+     totalMoves.innerHTML = moves;
+
+     // Add Rate
+     const addRate = document.querySelector("#totalRate");
+     totalRate.innerHTML = starsContainer.innerHTML
+
+     // Stop Timer
+     stopTimer();
+   }
+
 
 /*
  * Raiting system
@@ -189,7 +213,7 @@ function twoDigit (n) {
 //Updates the time
 function update () {
   let now = new Date().getTime(),
-  dt = now - lastUpdateTime;
+  dt = now - lastUpdateTime; //delta time
 
   currentTimer += dt;
 
