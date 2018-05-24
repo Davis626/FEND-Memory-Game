@@ -15,6 +15,9 @@ let mins = document.querySelector('span.minutes');
 let secs = document.querySelector('span.seconds');
 let cents = document.querySelector('span.centiseconds');
 
+//Modal variables
+let starCount = 3;
+
 /*
  * Shuffle function from http://stackoverflow.com/a/2450976
  */
@@ -133,14 +136,6 @@ function gameOver() {
     //Call 'createCards' function to start new game
     createCards();
 
-    //Reset any related variables
-    matchedCards = [];
-    moves = 0;
-    movesContainer.innerHTML = moves;
-    starsContainer.innerHTML = star + star + star;
-    firstClick = true;
-    resetTimer();
-
     modalPop();
   }
 }
@@ -177,10 +172,19 @@ function gameOver() {
 
      // Add Rate
      const addRate = document.querySelector("#totalRate");
-     totalRate.innerHTML = starsContainer.innerHTML
+     totalRate.innerHTML = starCount;
 
      // Stop Timer
      stopTimer();
+
+
+    // Add time to the Modal
+    const totalMinutes = document.querySelector("#totalMinutes");
+    const totalSeconds = document.querySelector("#totalSeconds");
+    const totalMiliseconds = document.querySelector("#totalMiliseconds");
+    totalMinutes.innerHTML   = hours;
+    totalSeconds.innerHTML = minutes;
+    totalMiliseconds.innerHTML = seconds;
    }
 
 
@@ -192,12 +196,15 @@ const star = `<li><i class="fa fa-star"></i></li>`;
 starsContainer.innerHTML = star + star + star;
 function rating() {
 
-    if( moves < 10) {
+    if( moves < 15) {
         starsContainer.innerHTML = star + star + star;
-    } else if( moves < 15) {
+        starCount = 3;
+    } else if( moves < 20) {
         starsContainer.innerHTML = star + star;
+        starCount = 2;
     } else {
         starsContainer.innerHTML = star;
+        starCount = 1;
     }
 }
 
