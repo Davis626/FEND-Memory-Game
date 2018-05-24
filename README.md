@@ -14,3 +14,4 @@ Start the game by clicking on any card. Try to match all the pairs as fast as yo
 - Live Stopwatch
 - 3 Stars rating System [ Based on the number of your moves]
 - Restart the game button
+- All application components are usable across modern desktop, tablet, and phone browsers.
