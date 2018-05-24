@@ -177,14 +177,13 @@ function gameOver() {
      // Stop Timer
      stopTimer();
 
-
     // Add time to the Modal
     const totalMinutes = document.querySelector("#totalMinutes");
     const totalSeconds = document.querySelector("#totalSeconds");
     const totalMiliseconds = document.querySelector("#totalMiliseconds");
-    totalMinutes.innerHTML   = hours;
-    totalSeconds.innerHTML = minutes;
-    totalMiliseconds.innerHTML = seconds;
+    totalMinutes.innerHTML = mins.innerHTML;
+    totalSeconds.innerHTML = secs.innerHTML;
+    totalMiliseconds.innerHTML = cents.innerHTML;
    }
 
 
