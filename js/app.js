@@ -165,8 +165,8 @@ function gameOver() {
    totalMoves.innerHTML = moves;
 
    // Add Rate
-   const addRate = document.querySelector("#totalRate");
-   totalRate.innerHTML = starCount;
+   const totalRate = document.querySelector("#totalRate");
+   totalRate.innerHTML = starsContainer.innerHTML;
 
    // Stop Timer
    stopTimer();
@@ -191,13 +191,10 @@ function gameOver() {
 
    if( moves < 15) {
      starsContainer.innerHTML = star + star + star;
-     starCount = 3;
    } else if( moves < 20) {
      starsContainer.innerHTML = star + star;
-     starCount = 2;
    } else {
      starsContainer.innerHTML = star;
-     starCount = 1;
    }
  }
 
