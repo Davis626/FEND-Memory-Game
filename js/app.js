@@ -267,6 +267,7 @@ function gameOver() {
    starsContainer.innerHTML = star + star + star;
    firstClick = true;
    resetTimer();
+   openedCards = [];
  })
 
 /*
@@ -292,6 +293,7 @@ restartBtnModal.addEventListener("click", function() {
   starsContainer.innerHTML = star + star + star;
   firstClick = true;
   resetTimer();
+  openedCards = [];
 })
 
 /*
