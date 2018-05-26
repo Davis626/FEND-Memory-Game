@@ -4,12 +4,10 @@
 
 A Browser-based card memory game - project of the Udacity Front-End Web Developer Nanodegree Program
 
-## Prerequisites
+## Dependencies
 
-Dependencies of the project:
-
-Font Awesome - href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
-Google font - href="https://fonts.googleapis.com/css?family=Coda"
+- [Font Awesome] (https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css)
+- [Google font: Coda] (https://fonts.googleapis.com/css?family=Coda)
 
 ## Instructions
 

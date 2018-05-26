@@ -75,6 +75,7 @@ function click(card) {
 
       card.classList.add("open", "show", "disable");
       openedCards.push(this);
+      console.log(openedCards.length);
 
       //Compare 2 cards
       compare(currentCard, previousCard);
@@ -84,6 +85,7 @@ function click(card) {
       //Don't have any opened cards
       currentCard.classList.add("open", "show", "disable");
       openedCards.push(this);
+      console.log(openedCards.length);
     }
   });
 }
