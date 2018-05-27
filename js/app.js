@@ -75,17 +75,18 @@ function click(card) {
 
       card.classList.add("open", "show", "disable");
       openedCards.push(this);
-      console.log(openedCards.length);
 
       //Compare 2 cards
       compare(currentCard, previousCard);
 
-    } else {
+    } else if (openedCards.length === 2) {
+        card.classList.remove("open", "show", "disable");
+
+      } else {
 
       //Don't have any opened cards
       currentCard.classList.add("open", "show", "disable");
       openedCards.push(this);
-      console.log(openedCards.length);
     }
   });
 }
@@ -112,11 +113,10 @@ function click(card) {
 
      //Set timeout to see card
      setTimeout(function() {
+       openedCards = [];
        currentCard.classList.remove("open","show", "disable");
        previousCard.classList.remove("open","show", "disable");
      }, 500);
-
-     openedCards = [];
    }
 
    //Add move
